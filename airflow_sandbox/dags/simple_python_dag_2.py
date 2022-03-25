@@ -30,8 +30,7 @@ hello_world_operator = PythonOperator(dag=dag, task_id="hello_world", python_cal
 
 
 if __name__ == "__main__":
-    from airflow.utils.state import State
-
+    dag.clear()
     # лол, чтобы брякпоинты заработали (и чтобы принты заработали), нало запускать с новой датой...
-    dag.run(start_date=pendulum.datetime(2021, 1, 3, tz="UTC"), executor=DebugExecutor(),
+    dag.run(start_date=pendulum.now(), executor=DebugExecutor(),
             run_at_least_once=True)
