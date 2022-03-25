@@ -13,7 +13,7 @@ from airflow.executors.debug_executor import DebugExecutor
 # Я знаю, что сейчас 2k22 год, и надо работать через контексты и декораторы. Это специально для простоты отладки.
 dag = DAG(
     dag_id='simple_python_dag_2',
-    schedule_interval=None,
+    schedule_interval="@daily",
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
     tags=['example'],
@@ -35,5 +35,6 @@ hello_world_operator = PythonOperator(dag=dag, task_id="hello_world", python_cal
 if __name__ == "__main__":
     dag.clear()
     # лол, чтобы брякпоинты заработали (и чтобы принты заработали), нало запускать с новой датой...
-    dag.run(start_date=pendulum.datetime(2021, 5, 1, tz="Europe/Moscow"), end_date=pendulum.now("Europe/Moscow"), executor=DebugExecutor(),
-            run_at_least_once=True)
+    dag.run(start_date=pendulum.datetime(2021, 5, 1, tz="Europe/Moscow"),
+            end_date=pendulum.datetime(2021, 5, 2, tz="Europe/Moscow"),
+            executor=DebugExecutor(), run_at_least_once=True)
