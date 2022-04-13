@@ -1,4 +1,4 @@
-
+from typing import Union
 import logging
 import shutil
 import time
@@ -11,34 +11,41 @@ from airflow.operators.python import PythonOperator, PythonVirtualenvOperator
 from airflow.executors.debug_executor import DebugExecutor
 
 
-def create_venv_operator(name: str, dag: DAG, *args) -> PythonVirtualenvOperator:
-    def hello_world_with_venv(*args):
-        import numpy
-        print("==========")
-        print(f"Args: {args}")
-        print(f"NumPy version: {numpy.__version__}")
-        print("==========")
-        print("VENV!!!")
-        print("==========")
+
+def wheres_my_args_dude(*args, **kwargs):
+    what_to_print = f"""
+    
+=====
+ARGS
+=====
+{args}
+
+=======
+KWARGS
+=======
+{kwargs}
+
+"""
+    print(what_to_print)
+
+
+
+def create_venv_operator(
+        name: str, dag: DAG, use_virtualenv: bool, *args) -> Union[PythonVirtualenvOperator, PythonOperator]:
+
 
     # hello_world_operator = PythonOperator(dag=dag, task_id="hello_world", python_callable=hello_world, op_args=[1, 2, 3])
 
-    hello_world_venv_operator = PythonVirtualenvOperator(
-        dag=dag, task_id=name, requirements=["numpy"],
-        python_callable=hello_world_with_venv, op_args=args)
+    if use_virtualenv:
+        oper = PythonVirtualenvOperator(
+            dag=dag, task_id=name, requirements=["dill"],
+            python_callable=wheres_my_args_dude, op_args=args, use_dill=True)
+    else:
+        oper = PythonOperator(dag=dag, task_id=name, python_callable=wheres_my_args_dude)
 
-    return hello_world_venv_operator
+    return oper
 
 
-# Вот эта функция печатает всё в логи при запуске через GUI Airflow,
-# но ни хрена не печатает при запуске через python3 simply_python_dag.py
-def hello_world(*args, **kwargs):
-    print("=================")
-    print("Hello world!!!")
-    print("=================")
-    # print(args)
-    # print(kwargs)
-    # print("=================")
 
 
 if __name__ == "__main__":
