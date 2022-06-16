@@ -99,4 +99,6 @@ with DAG(
     #     # [END howto_operator_python_venv]
 
 if __name__ == "__main__":
-    dag.run(start_date=pendulum.datetime(2021, 1, 1, tz="UTC"), local=True, run_at_least_once=True)
+    dag.clear()
+    dag.run(start_date=pendulum.datetime(2021, 1, 1, tz="UTC"), local=True,
+            run_at_least_once=True, executor=DebugExecutor())
