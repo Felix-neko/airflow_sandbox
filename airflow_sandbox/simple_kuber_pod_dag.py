@@ -36,8 +36,7 @@ dag = DAG('super_dooper_kuber', default_args=default_args,
 passing = KubernetesPodOperator(
     namespace='default',
     image="ubuntu",
-    cmds=["/usr/bin/echo", "19 35 vse good"],
-    #arguments=["print('hello world')"],
+    cmds=["/usr/bin/echo", "Alright!"],
     labels={"foo": "bar"},
     name="passing-test",
     task_id="passing-task",
@@ -53,5 +52,5 @@ if __name__ == "__main__":
     logical_date = pendulum.datetime(2021, 1, 1, tz="UTC")
     dag.run(start_date=logical_date, end_date=logical_date, local=True,
             run_at_least_once=True,
-            # executor=DebugExecutor()
+            executor=DebugExecutor()
             )
