@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python-demo
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+  - name: python-demo-container
+    image: python:3.7
+#     python3 -c \"print('^__^')\"
+#     command: ["sleep", "600"]
+#     args: ["HOSTNAME", "KUBERNETES_PORT"]
+#     command: ["python3", "-c", "\"print('^__^')\";"]
+    command: ["/bin/sh", "-c", "python3 -c 'print(\"^__^\")'; sleep 600"]
+  restartPolicy: Never
