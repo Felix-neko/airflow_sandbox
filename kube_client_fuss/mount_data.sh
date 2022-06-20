@@ -1,3 +1,3 @@
 BASEDIR=$(dirname "$0")
 
-minikube mount $BASEDIR/data:/mnt/data
+minikube mount $BASEDIR/data:/host_data
