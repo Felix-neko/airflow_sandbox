@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: task-pv-claim
+  name: host-dags-pvc
 spec:
   storageClassName: manual
   accessModes:
