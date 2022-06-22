@@ -4,8 +4,12 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
+import fs_etl
+
 
 def wheres_my_path_dude():
+
+
     file_path = Path(__file__).absolute()
     print(f">>>>>>>>>>\npath=={file_path}")
     print(list(file_path.parent.iterdir()))

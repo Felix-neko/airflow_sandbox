@@ -1,0 +1,27 @@
+dags:
+  persistence:
+    enabled: true
+    existingClaim: host-dags-pvc
+  gitSync:
+    enabled: false
+
+executor: KubernetesExecutor
+logs:
+  persistence:
+    enabled: true
+
+#airflow:
+#  extraPipPackages:
+#    - fs_etl
+#  image:
+#    repository: felixneko/fs_etl_basic
+#scheduler:
+#  extraPipPackages:
+#    - "torch==1.8.0"
+
+
+images:
+  airflow:
+    repository: felixneko/fs_etl_basic
+    tag: latest
+    pullPolicy: Always  # На случай, если мы всегда фигачим в :latest
