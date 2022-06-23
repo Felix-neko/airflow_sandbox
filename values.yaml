@@ -24,4 +24,4 @@ images:
   airflow:
     repository: felixneko/fs_etl_basic
     tag: latest
-    pullPolicy: Always  # На случай, если мы всегда фигачим в :latest
+    pullPolicy: Always  # На случай, если мы всегда фигачим докер-образок в :latest без нового тега
