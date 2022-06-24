@@ -5,7 +5,7 @@ dags:
   gitSync:
     enabled: false
 
-executor: KubernetesExecutor
+
 logs:
   persistence:
     enabled: true
@@ -20,8 +20,32 @@ logs:
 #    - "torch==1.8.0"
 
 
-images:
-  airflow:
-    repository: felixneko/fs_etl_basic
+# images:
+#   airflow:
+# #     repository: felixneko/fs_etl_basic
+#     repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
+#     tag: latest
+#     pullPolicy: Always  # На случай, если мы всегда фигачим докер-образок в :latest без нового тега
+
+
+airflow:
+  image:
+    repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
     tag: latest
-    pullPolicy: Always  # На случай, если мы всегда фигачим докер-образок в :latest без нового тега
+    pullPolicy: Always
+    pullSecret: "bWxvcHNfYXJ0aWZhY3Rvcnk6MTAwTEVUb2Rpbm80ZXN0dmEhR0dNYXJxdWV6"
+
+  executor: KubernetesExecutor
+
+workers:
+  enabled: false
+
+flower:
+  enabled: false
+
+redis:
+  enabled: false
+
+scheduler:
+  logCleanup:
+    enabled: false

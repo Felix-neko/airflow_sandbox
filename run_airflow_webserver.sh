@@ -1,1 +1,1 @@
-kubectl port-forward svc/airflow-webserver 8080:8080
+kubectl port-forward svc/airflow-web 8080:8080
