@@ -14,7 +14,7 @@ airflow:
   image:
     repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   executor: KubernetesExecutor
 
 workers:
