@@ -10,31 +10,11 @@ logs:
   persistence:
     enabled: true
 
-#airflow:
-#  extraPipPackages:
-#    - fs_etl
-#  image:
-#    repository: felixneko/fs_etl_basic
-#scheduler:
-#  extraPipPackages:
-#    - "torch==1.8.0"
-
-
-# images:
-#   airflow:
-# #     repository: felixneko/fs_etl_basic
-#     repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
-#     tag: latest
-#     pullPolicy: Always  # На случай, если мы всегда фигачим докер-образок в :latest без нового тега
-
-
 airflow:
   image:
     repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
     tag: latest
     pullPolicy: Always
-    pullSecret: "bWxvcHNfYXJ0aWZhY3Rvcnk6MTAwTEVUb2Rpbm80ZXN0dmEhR0dNYXJxdWV6"
-
   executor: KubernetesExecutor
 
 workers:
