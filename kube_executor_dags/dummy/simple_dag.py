@@ -16,10 +16,10 @@ dag = DAG(
 
 repo_path = Path(__file__).parent.absolute()
 
-mmb_oper = create_airflow_operator(repo_path, "MmbEtlTask", dag=dag, use_virtualenv=True, ti2="{{ti}}")
+mmb_oper = create_airflow_operator(repo_path, "MmbEtlTask", dag=dag, use_virtualenv=False, ti2="{{ti}}")
 big_and_fat_oper = create_airflow_operator(repo_path, "BigFatEtlTask", dag=dag, use_virtualenv=False,
                                            data_from_mmb="{{ti.xcom_pull(key='mmb_data', task_ids='MmbEtlTask')}}")
-small_and_thin_oper = create_airflow_operator(repo_path, "SmallThinEtlTask", dag=dag, use_virtualenv=False)
+small_and_thin_oper = create_airflow_operator(repo_path, "SmallThinEtlTask", dag=dag, use_virtualenv=True)
 
 mmb_oper >> big_and_fat_oper >> small_and_thin_oper
 
