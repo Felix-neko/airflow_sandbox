@@ -12,9 +12,11 @@ logs:
 
 airflow:
   image:
-    repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
-    tag: latest
-    pullPolicy: IfNotPresent
+    repository: apache/airflow
+    tag: latest-python3.7
+#    repository: mlops-docker-snapshots.binary.alfabank.ru/fs_etl_basic
+#    tag: latest
+#    pullPolicy: IfNotPresent
   executor: KubernetesExecutor
 
 workers:

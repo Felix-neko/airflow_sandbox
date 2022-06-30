@@ -7,12 +7,14 @@ from kubernetes.client import models as k8s
 
 
 def do_nothing_and_sleep():
-    print(">>> FALLING ASLEEP")
-    time.sleep(3)
-    print(">>> SLEEP OVER!!!!")
+    # print(">>> FALLING ASLEEP")
+    # time.sleep(3)
+    # print(">>> SLEEP OVER!!!!")
+    import fs_etl
 
+    print(">>> FS ETL somehow imported!")
 
-dag = DAG('super_dooper_mega', description='Super Dooper Mega DAG', schedule_interval='0 12 * * *',
+dag = DAG('overriding', description='Super Dooper Pod Overriding DAG', schedule_interval='0 12 * * *',
           start_date=datetime(2017, 3, 20), catchup=False)
 
 
