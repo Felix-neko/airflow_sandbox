@@ -9,5 +9,5 @@ spec:
     - protocol: TCP
       port: 80  # Что открываем наружу
       targetPort: 80  # Куда цепляемся на поде
-#       nodePort: 32410
+      nodePort: 30000
   type: NodePort

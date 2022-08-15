@@ -7,7 +7,7 @@ RUN echo 'deb http://security.debian.org/debian-security stretch/updates main' >
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY bda51-configs /opt/airflow/hadoop
+COPY bda51-configs /opt/hadoop
 
 USER airflow
 RUN pip3 install --no-cache-dir --extra-index-url https://binary.alfabank.ru/artifactory/api/pypi/fs_etl-pypi/simple fs-etl==0.6.7
