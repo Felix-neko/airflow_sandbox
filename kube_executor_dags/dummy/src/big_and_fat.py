@@ -4,13 +4,13 @@ from fs_etl.base_task import BaseEtlTask
 
 
 class BigFatEtlTask(BaseEtlTask):
-    def process_data(self, calc_date: date):
+    def process_data(self, logical_date: date):
         print("==============================")
         print("BigFatEtlTask.process_data(...)")
         print("==============================")
 
         print(f"PySpark version: {self.spark_session.version}")
-        print(f"date_interval: {calc_date}")
+        print(f"date_interval: {logical_date}")
 
         self.spark_session.sql("SHOW DATABASES").show()
 
@@ -25,6 +25,6 @@ class BigFatEtlTask(BaseEtlTask):
         print(">> PREV DATA FROM MMB")
         print(self.airflow_kwargs["data_from_mmb"])
 
-    def save_metadata(self, calc_date: date, success: bool = True):
-        # super().save_metadata(calc_date)
-        print(">> user save_metadata")
+    def save_metadata(self, scheduled_date: date, logical_date: date, success: bool = True):
+        # super().save_metadata(calc_date, success)
+        print(f">> user save_metadata, calc_date: {logical_date}, success: {success}")

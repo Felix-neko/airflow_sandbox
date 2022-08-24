@@ -10,4 +10,4 @@ RUN echo 'deb http://security.debian.org/debian-security stretch/updates main' >
 COPY bda51-configs /opt/airflow/hadoop
 
 USER airflow
-RUN pip3 install --no-cache-dir --extra-index-url https://binary.alfabank.ru/artifactory/api/pypi/fs_etl-pypi/simple fs-etl==0.6.7
+RUN pip3 install --no-cache-dir --extra-index-url https://binary.alfabank.ru/artifactory/api/pypi/fs_etl_test/simple fs-etl==0.8.1

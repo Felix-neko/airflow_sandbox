@@ -1,90 +1,89 @@
+# Стенд, на котором исполняется расчёт
+stand: localhost_docker
+# Хаб
+hub: RB
+# Уникальное имя проекта
+project_name: dummy_feature_repo
+# Описание проекта (опционально)
+project_description: "Простой пример"
+author_name: 'Alexey Golovizin'
+author_email: 'AGolovizin@alfabank.ru'
 
 # Настройки таблиц-источников в Hadoop: словарь, ключи которого -- короткие мнемонические имена таблиц-источников.
-# В шаблонах мы будем обращаться к таблицампо этим именам.
+# В шаблонах мы будем обращаться к таблицам по этим именам.
 src_settings:
-  default_schema: hive_schema_name
+  default_schema_name: tech_profiling
 
   default_pre_checks:
-#    - check_type: "table_exists"
-    - check_type: "min_not_null_on_date"
-      params:
-        min_not_null_rows: 50_000
-        column: client_pin
+
+#    - check_type: "min_not_null_on_date"
+#      params:
+#        min_not_null_rows: 50_000
+#        column: client_pin
+#    - check_type: "date_partition_exists"
+#      params:
+#        date_policy: first_day_of_month
 
   tables:
-    mmb:
-      # Значения в словаре таблиц-источников -- тоже словари с настройками конкретной таблицы.
-      # Обязательный ключ для каждой таблицы -- full_table_name,
-      full_table_name: "schema_name.hive_table_name"  # Фактическое имя таблицы для подстановки в SQL-шаблонах
+    sinner_souls:
+      table_name: neural_example__sinner_souls
 
-    zpp:
-      schema: p_datalake
-      full_table_name: "schema_name.zpp_blablablabla"
-      # Остальные поля опциональные, сейчас можно задать любые
-      pre_load_checkups:
-        this_settings: ""
-        are_not_implemented_yet: ""
 
 # Настройки выходных таблиц в Hadoop
 dest_settings:
-  datamart_group:  # Это поле нужно для записи в хранилище метаданных
-    name: "some_dmg_name"  # Строковое ID группы витрин, рассчитываемых в рамках данного ETL-скрипта
-    description: "Ваше описание для группы витрин, которая рассчитывается этим ETL-скриптом"
-  tables:
-    out_datamart:
-      full_table_name: "out_schema_name.out_table_name"
+  default_schema_name: tech_profiling
+  calculate_metrics: false
+
+#  default_pre_checks:
+#    - check_type: "table_exists"
+
+  default_metrics:
+    - metrics_type: min
+    - metrics_type: average
+
+  default_datamart_metrics:
+    - metrics_type: "partition_size"
+
+save_metadata: false
 
 spark_settings:
   default:
     # Настройки HADOOP (аналогично $HADOOP_CONF_DIR, но поддерживается и относительный путь от ETL-репозитория)
-#     hadoop_conf_dir: "./_hadoop_configs/bda51-configs"
+#     hadoop_conf_dir: "../_hadoop_configs/quickstart-bigdata-configs"
     # Подставить заданный $HADOOP_USER_NAME
-#     hadoop_user_name: tech_profiling
+    hadoop_user_name: osboxes
     # Если true, то создаст удалённую Spark-сессию с .master("yarn")
     use_yarn_master: false
   #   use_kerberos: true
-
-  less_but_fat:
-#     hadoop_conf_dir: "./_hadoop_configs/bda51-configs"
-    use_yarn_master: false
-#     hadoop_user_name: tech_profiling
-      # Подставить заданные настройки в SparkSession.builder.config(key, val)
     extra_configs:
-      "spark.cores.max": "1"
-      "spark.executor.instances": "1"
-      "spark.executor.memory": "2g"
-      "spark.executor.cores": "2"
+      "hive.exec.dynamic.partition.mode": nonstrict
 
-  more_but_thin:
-#     hadoop_conf_dir: "./_hadoop_configs/bda51-configs"
-    use_yarn_master: false
-#     hadoop_user_name: tech_profiling
-    extra_configs:
-      "spark.cores.max": "4"
-      "spark.executor.instances": "1"
-      "spark.executor.memory": "1g"
-      "spark.executor.cores": "2"
 
 task_class_settings:
   default:
     spark_profile: default
-  BigFatEtlTask:
-    spark_profile: less_but_fat
-    python_requirements: requirements_big_and_fat.txt
-  SmallThinEtlTask:
-    spark_profile: more_but_thin
+    pypi_repo_settings:
+      index_url: https://artapp.moscow.alfaintra.net/artifactory/api/pypi/pypi-remote/simple
+      trusted_hosts:
+      - artapp.moscow.alfaintra.net
+      - binary.alfabank.ru
+      extra_index_urls:
+        - https://binary.alfabank.ru/artifactory/api/pypi/fs_etl_test/simple
+    kubernetes_settings:
+      image:
+      memory_limit: 4000Mi
+      cpu_limit: 2000m
+      memory_request: 500Mi
+      cpu_request: 500m
+
 
 
 # Дополнительные переменные среды перед запуском ETL-процесса
 env_vars:
-  SPARK_LOCAL_HOSTNAME: localhost
-#  "JAVA_HOME": "/usr/java/jdk1.8.0_221-amd64/jre"
-#  PATH: $PATH:/anything/you/want
+#   PYSPARK_PYTHON: python3
 
 
 # Дополнительные настройки: в словарь верхнего уровня можно добавлять YAML-объекты произвольной структуры
-user_settings:
-  foo: bar
-
-moar_user_settings:
-  hell: yeah
+multiline_example_settings:
+  schema_name: "hell"
+  create_schema: false
