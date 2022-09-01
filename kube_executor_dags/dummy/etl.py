@@ -1,23 +1,30 @@
 from datetime import date
 
 from fs_etl.base_task import BaseEtlTask
+from fs_etl.utils.misc import get_fs_etl_version
+
+import some_module
 
 
 class MmbEtlTask(BaseEtlTask):
-    def process_data(self, calc_date: date):
+    def process_data(self, logical_date: date):
+
+        print("=============================")
+        print("checking in-repo imports...")
+        print("=============================")
+        some_module.foo()
+
         print("==============================")
         print("MmbEtlTask.process_data(...)")
         print("==============================")
 
-        ti = self.airflow_kwargs["ti"]
-        ti.xcom_push(key="mmb_data", value={"some": "data", "you": "want"})
-
         print(f"PySpark version: {self.spark_session.version}")
-        print(f"date_interval: {calc_date}")
+        print(f"date_interval: {logical_date}")
+        print(f"FS ETL version: {get_fs_etl_version()}")
 
-        self.spark_session.sql("SHOW DATABASES").show()
 
-        print("")
+        import time
+        time.sleep(60)
 
         # print(">> SRC SETTINGS:")
         # print(self.settings.src_settings)
@@ -28,9 +35,9 @@ class MmbEtlTask(BaseEtlTask):
     #     # super().run_pre_checks(calc_date)
     #     print(">> user pre-checks")
 
-    def save_metadata(self, calc_date: date, success: bool = True):
+    # def save_metadata(self, scheduled_date: date, logical_date: date, success: bool = True):
         # super().save_metadata(calc_date, success)
-        print(f">> user save_metadata, calc_date: {calc_date}, success: {success}")
+        # print(f">> user save_metadata, calc_date: {logical_date}, success: {success}")
 
     # def run_post_checks(self, calc_date: date):
     #     # super().run_post_checks(calc_date)

@@ -1,0 +1,16 @@
+sentences:
+  table_name: neural_example__judgement_day_sentences
+  description: "Описание витрины данных"
+  tags:
+    - "dummy"
+    - "dev"
+  index_columns:
+    sinner_id: "ID клиента"
+  partition_columns:
+    dt: "Дата последнего расчёта"
+
+  features: {}
+
+  metrics:
+    - metrics_type: partition_size
+

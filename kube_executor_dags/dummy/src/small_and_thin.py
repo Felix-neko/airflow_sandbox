@@ -4,14 +4,14 @@ from fs_etl.base_task import BaseEtlTask
 
 
 class SmallThinEtlTask(BaseEtlTask):
-    def process_data(self, calc_date: date):
+    def process_data(self, logical_date: date):
         print("==============================")
         print("SmallThinEtl.process_data(...)")
         print("==============================")
 
         print(f"PySpark version: {self.spark_session.version}")
         print("SPARK CONFIG:", self.spark_session.conf)
-        print(f"date_interval: {calc_date}")
+        print(f"date_interval: {logical_date}")
 
         self.spark_session.sql("SHOW DATABASES").show()
 
@@ -23,6 +23,6 @@ class SmallThinEtlTask(BaseEtlTask):
         print(">> AIRFLOW KWARGS:")
         print(self.airflow_kwargs)
 
-    def save_metadata(self, calc_date: date, success: bool = True):
-        # super().save_metadata(calc_date)
-        print(">> user save_metadata")
+    def save_metadata(self, scheduled_date: date, logical_date: date, success: bool = True):
+        # super().save_metadata(calc_date, success)
+        print(f">> user save_metadata, calc_date: {logical_date}, success: {success}")
