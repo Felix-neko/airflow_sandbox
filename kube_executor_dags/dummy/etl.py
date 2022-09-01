@@ -1,6 +1,7 @@
 from datetime import date
 
 from fs_etl.base_task import BaseEtlTask
+from fs_etl.utils.misc import get_fs_etl_version
 
 import some_module
 
@@ -19,6 +20,7 @@ class MmbEtlTask(BaseEtlTask):
 
         print(f"PySpark version: {self.spark_session.version}")
         print(f"date_interval: {logical_date}")
+        print(f"FS ETL version: {get_fs_etl_version()}")
 
 
         import time
