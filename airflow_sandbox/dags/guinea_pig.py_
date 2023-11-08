@@ -1,0 +1,67 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+from datetime import datetime
+from devtools import debug
+
+from enum import Enum
+
+
+class CalcType(Enum):
+    METRICS_ONLY = "METRICS_ONLY"
+    ALL = "CALC_ALL"
+
+
+def calc_metrics_only(*args, **kwargs):
+    print('Metrics only')
+    print("datetime now: ", datetime.now())
+    debug(args)
+    debug(kwargs)
+    debug(kwargs["dag_run"].conf)
+
+
+def calc_normal_flow(*args, **kwargs):
+    print('Normal flow')
+    print("datetime now: ", datetime.now())
+    debug(args)
+    debug(kwargs)
+    debug(kwargs["dag_run"].conf)
+
+
+def select_calc_type(*args, **kwargs):
+    print('Selecting calc type')
+    print("datetime now: ", datetime.now())
+    debug(args)
+    debug(kwargs)
+
+    conf = kwargs["dag_run"].conf
+    debug(conf)
+
+    calc_type = conf.get("calc_type", CalcType.ALL)
+    if calc_type == "METRICS_ONLY":
+        return "calc_metrics_only_task"
+    else:
+        return "calc_normal_flow_task"
+
+
+with DAG(dag_id="guinea_pig_dag", start_date=datetime(2023, 10, 29, 5, 0, 0),
+         schedule_interval="*/5 * * * *", catchup=True) as dag:
+
+    select_calc_type_task = BranchPythonOperator(
+        task_id="select_calc_type", python_callable=select_calc_type)
+
+    calc_normal_flow_task = PythonOperator(
+        task_id="calc_normal_flow_task",
+        python_callable=calc_normal_flow)
+
+    calc_normal_flow_2_task = PythonOperator(
+        task_id="calc_normal_flow_2_task",
+        python_callable=calc_normal_flow)
+
+    calc_metrics_only_task = PythonOperator(
+        task_id="calc_metrics_only_task",
+        python_callable=calc_metrics_only)
+
+    select_calc_type_task >> calc_metrics_only_task
+    select_calc_type_task >> calc_normal_flow_task
+
+    calc_normal_flow_task >> calc_normal_flow_2_task

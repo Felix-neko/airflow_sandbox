@@ -1,0 +1,48 @@
+# В этом тестовом DAGе мы пытаемся включить PythonVirtualenvOperator и передать ему контекстные переменные.
+# Внутрь каждого оператора передаём контекст запуска airflow
+
+from datetime import timedelta
+from pathlib import Path
+import airflow
+from airflow import DAG
+from airflow.operators.python import PythonOperator, PythonVirtualenvOperator
+import pendulum
+
+
+dag = DAG(
+    default_args={
+        'retries': 2,
+        'retry_delay': timedelta(minutes=10),
+    },
+    dag_id='fs_rb_cashflow_test5',
+    schedule_interval='0 5 * * 1',
+    start_date=pendulum.datetime(2020, 1, 1, tz='UTC'),
+    catchup=False,
+    tags=['Feature Store', 'RB', 'u_m1ahn'],
+#    render_template_as_native_obj=True,
+)
+
+context = {"ts": "{{ ts }}", "dag": "{{ dag }}"}
+op_args = [context, Path(__file__).parent.absolute()]
+
+
+def make_foo(*args, **kwargs):
+    print("---> making foo!")
+    print("make foo(...): args")
+    print(args)
+    print("make foo(...): kwargs")
+    print(kwargs)
+
+
+make_foo_task = PythonVirtualenvOperator(
+        task_id='make_foo',
+        python_callable=make_foo,
+        provide_context=True,
+        use_dill=True,
+        system_site_packages=False,
+        op_args=op_args,
+        op_kwargs={
+          "execution_date_str": '{{ execution_date }}',
+        },
+        requirements=["dill", "pytz", f"apache-airflow=={airflow.__version__}", "psycopg2-binary >= 2.9, < 3"],
+        dag=dag)

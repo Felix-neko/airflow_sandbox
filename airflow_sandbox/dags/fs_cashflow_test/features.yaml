@@ -1,0 +1,224 @@
+transactions_cashflowcategory_stats:
+  full_table_name: p_datalake.fs__cashflow_online_tst
+  store_type: online
+  add_partition_cols_to_keys: false
+  hdfs_file_format: parquet
+  partition_date_format: "yyyy-MM-dd"
+  description: "Средние суммы карточных транзакций по категориям за месяц на протяжении года"
+  tags:
+    - "RB"
+  index_columns:
+    client_pin: "ID клиента"
+  partition_columns:
+    dt: "Дата, на которую произведен расчет витрины"
+  features:
+    avg_by_category__amount__sum__cashflowcategory_name__produkty: "Средняя сумма транзакций в категории - ПРОДУКТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__vydacha_nalichnyh_v_bankomate: "Средняя сумма транзакций в категории - ВЫДАЧА НАЛИЧНЫХ В БАНКОМАТЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__supermarkety: "Средняя сумма транзакций в категории - СУПЕРМАРКЕТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__gipermarkety: "Средняя сумма транзакций в категории - ГИПЕРМАРКЕТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kafe: "Средняя сумма транзакций в категории - КАФЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__taksi: "Средняя сумма транзакций в категории - ТАКСИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__alkogol: "Средняя сумма транзакций в категории - АЛКОГОЛЬ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__perevody_s_karty_na_kartu: "Средняя сумма транзакций в категории - ПЕРЕВОДЫ С КАРТЫ НА КАРТУ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtozapravki: "Средняя сумма транзакций в категории - АВТОЗАПРАВКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__apteki: "Средняя сумма транзакций в категории - АПТЕКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__elektronnye_dengi: "Средняя сумма транзакций в категории - ЭЛЕКТРОННЫЕ ДЕНЬГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__odezhda: "Средняя сумма транзакций в категории - ОДЕЖДА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__fastfud: "Средняя сумма транзакций в категории - ФАСТФУД за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__vse_dlja_doma: "Средняя сумма транзакций в категории - ВСЁ ДЛЯ ДОМА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtomobil: "Средняя сумма транзакций в категории - АВТОМОБИЛЬ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__zarubezhnye_finansovye_operatsii: "Средняя сумма транзакций в категории - ЗАРУБЕЖНЫЕ ФИНАНСОВЫЕ ОПЕРАЦИИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kosmetika: "Средняя сумма транзакций в категории - КОСМЕТИКА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__tovary_i_uslugi: "Средняя сумма транзакций в категории - ТОВАРЫ И УСЛУГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__dom_kvartira: "Средняя сумма транзакций в категории - ДОМ, КВАРТИРА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__transport: "Средняя сумма транзакций в категории - ТРАНСПОРТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__onlajn_muzyka: "Средняя сумма транзакций в категории - ОНЛАЙН МУЗЫКА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__cotovaja_svjaz: "Средняя сумма транзакций в категории - CОТОВАЯ СВЯЗЬ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__remont: "Средняя сумма транзакций в категории - РЕМОНТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__metro: "Средняя сумма транзакций в категории - МЕТРО за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__marketplejsy: "Средняя сумма транзакций в категории - МАРКЕТПЛЕЙСЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sportivnaja_odezhda: "Средняя сумма транзакций в категории - СПОРТИВНАЯ ОДЕЖДА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__razvlechenija: "Средняя сумма транзакций в категории - РАЗВЛЕЧЕНИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__set_supermarketov: "Средняя сумма транзакций в категории - СЕТЬ СУПЕРМАРКЕТОВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__tovary_dlja_detej: "Средняя сумма транзакций в категории - ТОВАРЫ ДЛЯ ДЕТЕЙ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__hobbi: "Средняя сумма транзакций в категории - ХОББИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kino: "Средняя сумма транзакций в категории - КИНО за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__gembling: "Средняя сумма транзакций в категории - ГЕМБЛИНГ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__zoomagaziny: "Средняя сумма транзакций в категории - ЗООМАГАЗИНЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bary_i_paby: "Средняя сумма транзакций в категории - БАРЫ И ПАБЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kafe_pekarni: "Средняя сумма транзакций в категории - КАФЕ-ПЕКАРНИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__obsluzhivanie_kompjuterov: "Средняя сумма транзакций в категории - ОБСЛУЖИВАНИЕ КОМПЬЮТЕРОВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__meditsinskie_tsentry: "Средняя сумма транзакций в категории - МЕДИЦИНСКИЕ ЦЕНТРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kofejni: "Средняя сумма транзакций в категории - КОФЕЙНИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__elektrichki: "Средняя сумма транзакций в категории - ЭЛЕКТРИЧКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__tsvety: "Средняя сумма транзакций в категории - ЦВЕТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__internet: "Средняя сумма транзакций в категории - ИНТЕРНЕТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__torgovye_tsentry: "Средняя сумма транзакций в категории - ТОРГОВЫЕ ЦЕНТРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__oteli: "Средняя сумма транзакций в категории - ОТЕЛИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kommunalnye_uslugi: "Средняя сумма транзакций в категории - КОММУНАЛЬНЫЕ УСЛУГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtozapchasti: "Средняя сумма транзакций в категории - АВТОЗАПЧАСТИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__parkovki: "Средняя сумма транзакций в категории - ПАРКОВКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__detskaja_odezhda: "Средняя сумма транзакций в категории - ДЕТСКАЯ ОДЕЖДА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__reklama_v_internete: "Средняя сумма транзакций в категории - РЕКЛАМА В ИНТЕРНЕТЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__pokupka_odezhdy_onlajn: "Средняя сумма транзакций в категории - ПОКУПКА ОДЕЖДЫ ОНЛАЙН за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__nalogi: "Средняя сумма транзакций в категории - НАЛОГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtomojki: "Средняя сумма транзакций в категории - АВТОМОЙКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__pokupka_igr: "Средняя сумма транзакций в категории - ПОКУПКА ИГР за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__aviakompanii: "Средняя сумма транзакций в категории - АВИАКОМПАНИИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__zdorove: "Средняя сумма транзакций в категории - ЗДОРОВЬЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__knigi_i_prochaja_pechatnaja_produktsija: |
+      Средняя сумма транзакций в категории - КНИГИ И ПРОЧАЯ ПЕЧАТНАЯ ПРОДУКЦИЯ за месяц на протяжении года
+    avg_by_category__amount__sum__cashflowcategory_name__pokupki_vnutri_igr: "Средняя сумма транзакций в категории - ПОКУПКИ ВНУТРИ ИГР за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bilety_na_poezda: "Средняя сумма транзакций в категории - БИЛЕТЫ НА ПОЕЗДА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__puteshestvija: "Средняя сумма транзакций в категории - ПУТЕШЕСТВИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__onlajn_kinoteatry: "Средняя сумма транзакций в категории - ОНЛАЙН КИНОТЕАТРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__karshering: "Средняя сумма транзакций в категории - КАРШЕРИНГ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__knigi: "Средняя сумма транзакций в категории - КНИГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__salony_krasoty: "Средняя сумма транзакций в категории - САЛОНЫ КРАСОТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__soft: "Средняя сумма транзакций в категории - СОФТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sushi: "Средняя сумма транзакций в категории - СУШИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__internet_supermarket: "Средняя сумма транзакций в категории - ИНТЕРНЕТ СУПЕРМАРКЕТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__pitstsa: "Средняя сумма транзакций в категории - ПИЦЦА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__nizhnee_bele: "Средняя сумма транзакций в категории - НИЖНЕЕ БЕЛЬЁ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__platnye_dorogi: "Средняя сумма транзакций в категории - ПЛАТНЫЕ ДОРОГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__platezhi_cherez_internet: "Средняя сумма транзакций в категории - ПЛАТЕЖИ ЧЕРЕЗ ИНТЕРНЕТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bytovaja_tehnika: "Средняя сумма транзакций в категории - БЫТОВАЯ ТЕХНИКА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bilety_na_kontserty_i_v_teatry: "Средняя сумма транзакций в категории - БИЛЕТЫ НА КОНЦЕРТЫ И В ТЕАТРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__brokerskie_uslugi: "Средняя сумма транзакций в категории - БРОКЕРСКИЕ УСЛУГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__juvelirnye_ukrashenija: "Средняя сумма транзакций в категории - ЮВЕЛИРНЫЕ УКРАШЕНИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__tabak: "Средняя сумма транзакций в категории - ТАБАК за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__onlajn_bilety_v_kino: "Средняя сумма транзакций в категории - ОНЛАЙН БИЛЕТЫ В КИНО за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__aksessuary: "Средняя сумма транзакций в категории - АКСЕССУАРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__stomatologija: "Средняя сумма транзакций в категории - СТОМАТОЛОГИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__obrazovanie: "Средняя сумма транзакций в категории - ОБРАЗОВАНИЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__duty_free: "Средняя сумма транзакций в категории - DUTY FREE за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kantstovary: "Средняя сумма транзакций в категории - КАНЦТОВАРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__internet_magaziny_knig: "Средняя сумма транзакций в категории - ИНТЕРНЕТ МАГАЗИНЫ КНИГ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__blagotvoritelnost: "Средняя сумма транзакций в категории - БЛАГОТВОРИТЕЛЬНОСТЬ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__platezhi_cherez_terminaly: "Средняя сумма транзакций в категории - ПЛАТЕЖИ ЧЕРЕЗ ТЕРМИНАЛЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__dostavka_edy: "Средняя сумма транзакций в категории - ДОСТАВКА ЕДЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__arenda_avtomobilej: "Средняя сумма транзакций в категории - АРЕНДА АВТОМОБИЛЕЙ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__obsluzhivanie: "Средняя сумма транзакций в категории - ОБСЛУЖИВАНИЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__fotopechat: "Средняя сумма транзакций в категории - ФОТОПЕЧАТЬ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__strahovanie: "Средняя сумма транзакций в категории - СТРАХОВАНИЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kupony_i_skidki: "Средняя сумма транзакций в категории - КУПОНЫ И СКИДКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sputnikovoe_tv: "Средняя сумма транзакций в категории - СПУТНИКОВОЕ ТВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__burgernye: "Средняя сумма транзакций в категории - БУРГЕРНЫЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__finansy: "Средняя сумма транзакций в категории - ФИНАНСЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bilety: "Средняя сумма транзакций в категории - БИЛЕТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__magaziny_podarkov: "Средняя сумма транзакций в категории - МАГАЗИНЫ ПОДАРКОВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtobusy: "Средняя сумма транзакций в категории - АВТОБУСЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__znakomstva: "Средняя сумма транзакций в категории - ЗНАКОМСТВА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__fitnes: "Средняя сумма транзакций в категории - ФИТНЕС за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__optiki: "Средняя сумма транзакций в категории - ОПТИКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__detskie_igrushki: "Средняя сумма транзакций в категории - ДЕТСКИЕ ИГРУШКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__investitsii: "Средняя сумма транзакций в категории - ИНВЕСТИЦИИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__barbershopy: "Средняя сумма транзакций в категории - БАРБЕРШОПЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__logistika: "Средняя сумма транзакций в категории - ЛОГИСТИКА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__agregatory_dlja_puteshestvennikov: |
+      Средняя сумма транзакций в категории - АГРЕГАТОРЫ ДЛЯ ПУТЕШЕСТВЕННИКОВ за месяц на протяжении года
+    avg_by_category__amount__sum__cashflowcategory_name__shtrafy: "Средняя сумма транзакций в категории - ШТРАФЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__oblachnye_hranilischa: "Средняя сумма транзакций в категории - ОБЛАЧНЫЕ ХРАНИЛИЩА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtosalony: "Средняя сумма транзакций в категории - АВТОСАЛОНЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bary_v_kinoteatrah: "Средняя сумма транзакций в категории - БАРЫ В КИНОТЕАТРАХ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__religija: "Средняя сумма транзакций в категории - РЕЛИГИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__akvaparki: "Средняя сумма транзакций в категории - АКВАПАРКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kliniki_dlja_beremennyh: "Средняя сумма транзакций в категории - КЛИНИКИ ДЛЯ БЕРЕМЕННЫХ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__binarnye_optsiony: "Средняя сумма транзакций в категории - БИНАРНЫЕ ОПЦИОНЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__analizy: "Средняя сумма транзакций в категории - АНАЛИЗЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__manikjur_i_pedikjur: "Средняя сумма транзакций в категории - МАНИКЮР И ПЕДИКЮР за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sportivnye_razvlechenija: "Средняя сумма транзакций в категории - СПОРТИВНЫЕ РАЗВЛЕЧЕНИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__restorany: "Средняя сумма транзакций в категории - РЕСТОРАНЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__polikliniki: "Средняя сумма транзакций в категории - ПОЛИКЛИНИКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__hosting: "Средняя сумма транзакций в категории - ХОСТИНГ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__parki_otdyha_i_razvlechenij: "Средняя сумма транзакций в категории - ПАРКИ ОТДЫХА И РАЗВЛЕЧЕНИЙ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__mjasnaja_produktsija: "Средняя сумма транзакций в категории - МЯСНАЯ ПРОДУКЦИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__chasy: "Средняя сумма транзакций в категории - ЧАСЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sport: "Средняя сумма транзакций в категории - СПОРТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__perevody: "Средняя сумма транзакций в категории - ПЕРЕВОДЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__spa_sauny_bani: "Средняя сумма транзакций в категории - СПА, САУНЫ, БАНИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__internet_telefonija: "Средняя сумма транзакций в категории - ИНТЕРНЕТ ТЕЛЕФОНИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__masterklassy: "Средняя сумма транзакций в категории - МАСТЕРКЛАССЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__prochie_bilety: "Средняя сумма транзакций в категории - ПРОЧИЕ БИЛЕТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__loukostery: "Средняя сумма транзакций в категории - ЛОУКОСТЕРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__okeanariumy: "Средняя сумма транзакций в категории - ОКЕАНАРИУМЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__spets_odezhda: "Средняя сумма транзакций в категории - СПЕЦ ОДЕЖДА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__odezhda_dlja_beremennyh: "Средняя сумма транзакций в категории - ОДЕЖДА ДЛЯ БЕРЕМЕННЫХ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__letsplej: "Средняя сумма транзакций в категории - ЛЕТСПЛЕЙ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__vozvrat_nalogov: "Средняя сумма транзакций в категории - ВОЗВРАТ НАЛОГОВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__antikvariat: "Средняя сумма транзакций в категории - АНТИКВАРИАТ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__avtozapchasti_dlja_gruzovikov: "Средняя сумма транзакций в категории - АВТОЗАПЧАСТИ ДЛЯ ГРУЗОВИКОВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__audioknigi: "Средняя сумма транзакций в категории - АУДИОКНИГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__vizovye_sbory: "Средняя сумма транзакций в категории - ВИЗОВЫЕ СБОРЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__turisticheskie_agenstva: "Средняя сумма транзакций в категории - ТУРИСТИЧЕСКИЕ АГЕНСТВА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__bassejny: "Средняя сумма транзакций в категории - БАССЕЙНЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__beg: "Средняя сумма транзакций в категории - БЕГ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__politika: "Средняя сумма транзакций в категории - ПОЛИТИКА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__krasota: "Средняя сумма транзакций в категории - КРАСОТА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__prochie_razvlechenija: "Средняя сумма транзакций в категории - ПРОЧИЕ РАЗВЛЕЧЕНИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sportivnoe_pitanie: "Средняя сумма транзакций в категории - СПОРТИВНОЕ ПИТАНИЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__gornolyzhnye_kurorty: "Средняя сумма транзакций в категории - ГОРНОЛЫЖНЫЕ КУРОРТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__foreks: "Средняя сумма транзакций в категории - ФОРЕКС за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__mfo: "Средняя сумма транзакций в категории - МФО за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__internet_kommertsija: "Средняя сумма транзакций в категории - ИНТЕРНЕТ КОMМЕРЦИЯ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__tsifrovaja_pechat: "Средняя сумма транзакций в категории - ЦИФРОВАЯ ПЕЧАТЬ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__zooparki: "Средняя сумма транзакций в категории - ЗООПАРКИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__pryzhki_s_parashjutom_: "Средняя сумма транзакций в категории - ПРЫЖКИ С ПАРАШЮТОМ  за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__joga: "Средняя сумма транзакций в категории - ЙОГА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kraudfanding: "Средняя сумма транзакций в категории - КРАУДФАНДИНГ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sms_platezhi: "Средняя сумма транзакций в категории - SMS-ПЛАТЕЖИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__aviabilety: "Средняя сумма транзакций в категории - АВИАБИЛЕТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__dostavka_kompleksnyh_zavtrakov_obedov_uzhinov: |
+      Средняя сумма транзакций в категории - ДОСТАВКА КОМПЛЕКСНЫХ ЗАВТРАКОВ, ОБЕДОВ, УЖИНОВ за месяц на протяжении года
+    avg_by_category__amount__sum__cashflowcategory_name__kovorkingi: "Средняя сумма транзакций в категории - КОВОРКИНГИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__kriptovaljuty: "Средняя сумма транзакций в категории - КРИПТОВАЛЮТЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__nochnye_kluby: "Средняя сумма транзакций в категории - НОЧНЫЕ КЛУБЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__onlajn_obrazovanie: "Средняя сумма транзакций в категории - ОНЛАЙН ОБРАЗОВАНИЕ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__ohota_i_rybalka: "Средняя сумма транзакций в категории - ОХОТА И РЫБАЛКА за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__paromy: "Средняя сумма транзакций в категории - ПАРОМЫ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__platezhi: "Средняя сумма транзакций в категории - ПЛАТЕЖИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__prokat_velosipedov: "Средняя сумма транзакций в категории - ПРОКАТ ВЕЛОСИПЕДОВ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__soljarii: "Средняя сумма транзакций в категории - СОЛЯРИИ за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__sportivnye_programmy_trenery_onlajn: |
+      Средняя сумма транзакций в категории - СПОРТИВНЫЕ ПРОГРАММЫ/ТРЕНЕРЫ ОНЛАЙН за месяц на протяжении года
+    avg_by_category__amount__sum__cashflowcategory_name__tennis: "Средняя сумма транзакций в категории - ТЕННИС за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__triatlon: "Средняя сумма транзакций в категории - ТРИАТЛОН за месяц на протяжении года"
+    avg_by_category__amount__sum__cashflowcategory_name__chastnye_samolety: "Средняя сумма транзакций в категории - ЧАСТНЫЕ САМОЛЁТЫ за месяц на протяжении года"
+  online_features:
+    - avg_by_category__amount__sum__cashflowcategory_name__vydacha_nalichnyh_v_bankomate
+    - avg_by_category__amount__sum__cashflowcategory_name__oteli
+    - avg_by_category__amount__sum__cashflowcategory_name__aksessuary
+    - avg_by_category__amount__sum__cashflowcategory_name__strahovanie
+    - avg_by_category__amount__sum__cashflowcategory_name__puteshestvija
+    - avg_by_category__amount__sum__cashflowcategory_name__dom_kvartira
+    - avg_by_category__amount__sum__cashflowcategory_name__parkovki
+    - avg_by_category__amount__sum__cashflowcategory_name__pokupka_igr
+    - avg_by_category__amount__sum__cashflowcategory_name__avtozapchasti
+    - avg_by_category__amount__sum__cashflowcategory_name__masterklassy
+    - avg_by_category__amount__sum__cashflowcategory_name__detskie_igrushki
+    - avg_by_category__amount__sum__cashflowcategory_name__meditsinskie_tsentry
+    - avg_by_category__amount__sum__cashflowcategory_name__kino
+    - avg_by_category__amount__sum__cashflowcategory_name__arenda_avtomobilej
+    - avg_by_category__amount__sum__cashflowcategory_name__kafe
+    - avg_by_category__amount__sum__cashflowcategory_name__agregatory_dlja_puteshestvennikov
+    - avg_by_category__amount__sum__cashflowcategory_name__tovary_i_uslugi
+    - avg_by_category__amount__sum__cashflowcategory_name__elektrichki
+    - avg_by_category__amount__sum__cashflowcategory_name__bytovaja_tehnika
+    - avg_by_category__amount__sum__cashflowcategory_name__duty_free
+    - avg_by_category__amount__sum__cashflowcategory_name__taksi
+    - avg_by_category__amount__sum__cashflowcategory_name__elektronnye_dengi
+    - avg_by_category__amount__sum__cashflowcategory_name__odezhda
+    - avg_by_category__amount__sum__cashflowcategory_name__gipermarkety
+    - avg_by_category__amount__sum__cashflowcategory_name__aviakompanii
+    - avg_by_category__amount__sum__cashflowcategory_name__razvlechenija
+    - avg_by_category__amount__sum__cashflowcategory_name__apteki
+    - avg_by_category__amount__sum__cashflowcategory_name__vse_dlja_doma
+    - avg_by_category__amount__sum__cashflowcategory_name__set_supermarketov
+    - avg_by_category__amount__sum__cashflowcategory_name__kofejni
+    - avg_by_category__amount__sum__cashflowcategory_name__hobbi
+    - avg_by_category__amount__sum__cashflowcategory_name__remont
+    - avg_by_category__amount__sum__cashflowcategory_name__salony_krasoty
+    - avg_by_category__amount__sum__cashflowcategory_name__avtomojki
+    - avg_by_category__amount__sum__cashflowcategory_name__zdorove
+    - avg_by_category__amount__sum__cashflowcategory_name__knigi_i_prochaja_pechatnaja_produktsija
+    - avg_by_category__amount__sum__cashflowcategory_name__cotovaja_svjaz

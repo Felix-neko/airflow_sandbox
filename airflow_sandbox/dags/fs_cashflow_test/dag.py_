@@ -1,0 +1,38 @@
+from datetime import timedelta
+from pathlib import Path
+
+from airflow import DAG
+from airflow.operators.python import get_current_context, ShortCircuitOperator, PythonOperator, PythonVirtualenvOperator
+import pendulum
+
+from fs_etl.airflow_interaction import create_airflow_operator, FsEtlDag
+
+dag = FsEtlDag(
+    default_args={
+        'retries': 2,
+        'retry_delay': timedelta(minutes=10),
+    },
+    dag_id='fs_rb_cashflow_test',
+    schedule_interval='0 5 * * 1',
+    start_date=pendulum.datetime(2020, 1, 1, tz='UTC'),
+    catchup=False,
+    tags=['Feature Store', 'RB', 'u_m1ahn'],
+    render_template_as_native_obj=True
+)
+
+
+def check_schedule_trigger():
+    return print("^__^")
+
+
+print_vars = PythonOperator(task_id='print_vars', python_callable=check_schedule_trigger, dag=dag)
+
+repo_path = Path(__file__).parent.absolute()
+cashflow_transactions_calc = create_airflow_operator(repo_path, 'TransactionsCashflow', dag=dag, use_virtualenv=False)
+
+if __name__ == "__main__":
+    # run_dag_once(dag, scheduled_date=pendulum.datetime(2021, 1, 1))
+    dag.test(execution_date=pendulum.datetime(2021, 1, 1))
+
+# cashflow_transactions_calc
+# cashflow_transactions_calc

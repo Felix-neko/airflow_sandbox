@@ -1,0 +1,78 @@
+sentences:
+  table_name: dummy_example__judgement_day_sentences
+  description: "Описание витрины данных"
+  tags:
+    - "dummy"
+    - "dev"
+  index_columns:
+    sentence_id: "ID объекта выходной витрины"
+  partition_columns:
+    dt: "Дата последнего расчёта"
+
+  store_type: OFFLINE
+  add_partition_cols_to_keys: false
+
+  features: {}
+
+  metrics:
+    - metrics_type: partition_size
+
+cassandra_benchmark:
+  table_name: dummy_example__cassandra_benchmark2
+  description: "Тестовая таблица, которую мы будем копировать в Cassandra DB"
+  tags:
+    - "dummy"
+    - "dev"
+  index_columns:
+    user_id: "Уникальное ID пользователя"
+  partition_columns:
+    event_date_str: "Дата последнего расчёта"
+
+  online_features:
+    - str_FLD_1
+    - str_FLD_2
+    - str_fld_3
+
+#   cassandra_slice_ids:
+#     - 4147
+#     - 5763
+#     - 9813
+
+#  cassandra_slice_ids_table: cassandra_benchmark_keys
+
+  store_type: OFFLINE
+
+  features: {}
+
+  metrics: []
+  pre_checks: []
+#     - metrics_type: partition_size
+
+
+documents:
+  table_name: dummy_example__documents
+  description: "Таблица для проверки работы составного ключа"
+  tags:
+    - "dummy"
+    - "dev"
+  index_columns:
+    folder_id: "ID папки"
+    document_id: "Строковый ID документа, уникальный для папки"
+
+  partition_columns:
+    dt: "Дата последнего расчёта"
+
+#   cassandra_slice_ids:
+#     - folder_id: 0
+#       document_id: "1m"
+#     - folder_id: 2
+#       document_id: "0m"
+
+  cassandra_slice_ids_table: dummy_example__documents_keys
+
+  store_type: ONLINE
+
+  features: {}
+
+  metrics: []
+  pre_checks: []

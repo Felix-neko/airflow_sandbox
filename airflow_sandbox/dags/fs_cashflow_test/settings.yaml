@@ -1,0 +1,69 @@
+# Стенд, на котором исполняется расчёт
+stand: dev
+# Хаб
+hub: RB
+# Уникальное имя проекта
+project_name: fs_rb_transactions_cashflow
+# Описание проекта (опционально)
+project_description: "Расчёт витрины 'cahsflow transactions' Хаба РБ"
+author_name: 'Andrew Tiukov'
+author_email: 'ATyukov@alfabank.ru'
+alert_emails: ['ATyukov@alfabank.ru']
+
+# Настройки таблиц-источников в Hadoop: словарь, ключи которого -- короткие мнемонические имена таблиц-источников.
+# В шаблонах мы будем обращаться к таблицам по этим именам.
+src_settings:
+  tables:
+    client:
+      full_table_name: l_deriveddata.client
+    cardtransaction_stran:
+      full_table_name: s_dmrb.cardtransaction_stran
+    cardtrncfcategory_stran:
+      full_table_name: s_dwh4dm.cardtrncfcategory_stran
+    cashflowcategory_ldim:
+      full_table_name: s_dwh4dm.cashflowcategory_ldim
+
+# Настройки выходных таблиц в Hadoop
+dest_settings:
+  tables:
+    transactions_cashflowcategory_stats:
+      full_table_name: p_datalake.fs__cashflow_online_tst
+      repartition_num: 4
+      raise_error_on_empty_result: true
+
+spark_settings:
+  default:
+    hadoop_user_name: tech_profiling
+    use_yarn_master: true
+    extra_configs:
+      "spark.driver.cores": 2
+      "spark.executor.cores": 3
+      "spark.driver.memory": 16g
+      "spark.executor.memory": 16g
+      "spark.submit.deploymode": client
+      "hive.exec.dynamic.partition": true
+      "hive.exec.dynamic.partition.mode": nonstrict
+      "spark.sql.sources.partitionOverwriteMode": dynamic
+      "spark.sql.hive.convertMetastoreParquet": false
+      "spark.yarn.maxAppAttempts": 3
+      "spark.shuffle.service.enabled": true
+      "spark.dynamicAllocation.enabled": true
+      "spark.dynamicAllocation.maxExecutors": 30
+      "spark.sql.shuffle.partitions": 500
+      "spark.network.timeout": 600s
+      "spark.eventLog.enabled": true
+      "spark.ui.enabled": true
+      "spark.yarn.historyServer.allowTracking": true
+
+task_class_settings:
+  default:
+    datamarts: []
+    spark_profile: default
+    stages_as_separate_operators: true
+    pypi_repo_settings:
+      index_url: https://binary.alfabank.ru/artifactory/api/pypi/pipy-virtual/simple
+      trusted_hosts:
+      - artapp.moscow.alfaintra.net
+      - binary.alfabank.ru
+      extra_index_urls:
+      - https://binary.alfabank.ru/artifactory/api/pypi/fs_etl-pypi/simple

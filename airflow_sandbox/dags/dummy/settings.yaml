@@ -1,0 +1,98 @@
+# Стенд, на котором исполняется расчёт
+stand: localhost_docker
+run_on_kubernetes: false
+# Хаб
+hub: RB
+# Уникальное имя проекта
+project_name: dummy_feature_repo
+# Описание проекта (опционально)
+project_description: "Простой пример"
+author_name: 'Alexey Golovizin'
+author_email: 'AGolovizin@alfabank.ru'
+
+dag_settings:
+#   dag_id: 'fs_etl_simple'
+  schedule_interval: "@hourly"
+  start_date: "2020-01-01 00:00"
+  catchup: false
+  tags: ['dummy']
+
+  default_args:
+    retries: 4
+    retry_delay: 15
+
+# Настройки таблиц-источников в Hadoop: словарь, ключи которого -- короткие мнемонические имена таблиц-источников.
+# В шаблонах мы будем обращаться к таблицам по этим именам.
+src_settings:
+  default_schema_name: tech_profiling
+
+  tables:
+    sinner_souls:
+      table_name: neural_example__sinner_souls
+
+
+# Настройки выходных таблиц в Hadoop
+dest_settings:
+  default_schema_name: tech_profiling
+  dev_schema_name: l_profiling
+
+  calculate_datamart_metrics: false
+  calculate_feature_metrics: true
+
+  default_datamart_metrics: []
+  default_feature_metrics: []
+
+  default_pre_checks:
+    - check_type: table_exists
+    - check_type: min_rows_on_date
+      params:
+        min_rows: 0
+
+save_metadata: false
+
+spark_settings:
+  default:
+    spark_jars:
+      - spark_jars/xml/spark-xml_2.11-0.5.0.jar_
+    stages_as_separate_operators: true
+    # Настройки HADOOP (аналогично $HADOOP_CONF_DIR, но поддерживается и относительный путь от ETL-репозитория)
+#    hadoop_conf_dir: "../_hadoop_configs/quickstart-bigdata-configs"
+    # Подставить заданный $HADOOP_USER_NAME
+    hadoop_user_name: osboxes
+    # Если true, то создаст удалённую Spark-сессию с .master("yarn")
+    use_yarn_master: false
+  #   use_kerberos: true
+
+    extra_configs:
+      "hive.exec.dynamic.partition.mode": nonstrict
+
+    separate_session_for_metrics: true
+#       spark.sql.hive.metastore.jars: maven
+#       spark.sql.hive.metastore.version: "1.2.1"
+#       spark.sql.catalogImplementation: hive
+
+    use_cassandra: true
+
+
+task_class_settings:
+  default:
+    spark_profile: default
+    pypi_repo_settings:
+      index_url: https://artapp.moscow.alfaintra.net/artifactory/api/pypi/pypi-remote/simple
+      trusted_hosts:
+      - artapp.moscow.alfaintra.net
+      - binary.alfabank.ru
+      extra_index_urls:
+        - https://binary.alfabank.ru/artifactory/api/pypi/fs_etl_test/simple
+#    stages_as_separate_operators: true
+    datamarts: []
+  MmbEtlTask:
+    datamarts: ["sentences", "cassandra_benchmark", "documents"]
+#  DummyEtlTask:
+#    datamarts: []
+# Дополнительные настройки: в словарь верхнего уровня можно добавлять YAML-объекты произвольной структуры
+#run_on_kubernetes: false
+
+extra_vars:
+  kubernetes: '{{ KUBERNETES }}'
+  stand: '{{ STAND }}'
